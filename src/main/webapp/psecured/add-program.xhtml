@@ -1,0 +1,57 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_addprogram}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_addprogram}" />
+				</f:facet>
+				
+				<p:outputLabel value="#{msg.lbl_sid}" for="sid" />
+				<p:selectOneMenu id="sid" value="#{mbAddProgram.program.schoolId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_sid}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbSchool.scTable}" var="sc"
+						itemLabel="#{sc}" itemValue="#{sc}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_pid}" for="id" />
+				<p:inputNumber id="id" value="#{mbAddProgram.program.programId}"
+					decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_pid}" />
+
+				<p:outputLabel value="#{msg.lbl_paname}" for="aname" />
+				<p:inputText id="aname" value="#{mbAddProgram.program.aName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_paname}" />
+
+				<p:outputLabel value="#{msg.lbl_pename}" for="ename" />
+				<p:inputText id="ename" value="#{mbAddProgram.program.eName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_pename}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}"
+						action="#{mbAddProgram.save()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/WEB-INF/template/template.xhtml">
+	<ui:define name="content">
+		<h:form>
+
+			<p:growl showSummary="false" showDetail="true" life="8000">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<p:outputLabel value="Registration Form" />
+				</f:facet>
+
+				<p:outputLabel value="First Name" />
+				<p:inputText value="#{mBUser.user.firstName}" required="true"
+					requiredMessage="Please Enter First Name"
+					validatorMessage="First Name must be Between 3 and 20 Characters">
+					<f:validateLength minimum="3" maximum="20" />
+				</p:inputText>
+
+				<p:outputLabel value="Last Name" />
+				<p:inputText value="#{mBUser.user.lastName}" required="true"
+					requiredMessage="Please Enter Last Name"
+					validatorMessage="Last Name must be Between 3 and 20 Characters">
+					<f:validateLength minimum="3" maximum="20" />
+				</p:inputText>
+
+				<p:outputLabel value="Sex" />
+				<p:selectOneRadio value="#{mBUser.user.sex}" required="true"
+					requiredMessage="Please Enter Sex">
+					<f:selectItem itemLabel="Male" itemValue="1" />
+					<f:selectItem itemLabel="Female" itemValue="2" />
+				</p:selectOneRadio>
+
+				<p:outputLabel value="BirthDay" />
+				<p:calendar value="#{mBUser.user.birthDay}" pattern="dd:MM:yyyy"
+					required="true" requiredMessage="Please Enter BirthDay" />
+
+				<p:outputLabel value="Country" />
+				<p:selectOneMenu value="#{mBUser.user.country}" required="true"
+					requiredMessage="Please Enter Country">
+					<f:selectItem itemLabel="Jordan" itemValue="1" />
+					<f:selectItem itemLabel="Palestine" itemValue="2" />
+					<f:selectItem itemLabel="Egypt" itemValue="3" />
+					<f:selectItem itemLabel="Syria" itemValue="4" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="Email Address" />
+				<p:inputText value="#{mBUser.user.emailAddress}" required="true"
+					requiredMessage="Please Enter Email Address"
+					validatorMessage="Please Check your Email Address">
+					<f:validateRegex
+						pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+				</p:inputText>
+
+				<p:outputLabel value="Expected Salary" />
+				<p:inputText value="#{mBUser.user.mobile}" required="true"
+					requiredMessage="Please Enter Expected Salary"
+					validatorMessage="Expected Salary must be Between 500 and 5000 ">
+					<f:validateDoubleRange minimum="500.0" maximum="5000.0" />
+				</p:inputText>
+
+				<p:outputLabel value="Mobile" />
+				<p:inputText value="#{mBUser.user.mobile}" required="true"
+					requiredMessage="Please Enter Mobile Number"
+					validatorMessage="Please Check your Mobile Number ">
+					<f:validateRegex pattern="^07[789] [0-9] {7}$" />
+				</p:inputText>
+
+				<p:outputLabel value="Password" />
+				<p:password id="pwd1" value="#{mBUser.user.password}"
+					feedback="false" match="pwd2" label="Password" required="true"
+					requiredMessage="Please Enter Password" />
+
+				<p:outputLabel value="Confirm Password" />
+				<p:password id="pwd2" value="#{mBUser.user.password}"
+					feedback="false" label="Confirm Password" required="true"
+					requiredMessage="Please Enter Password Again"
+					validatorMessage="Dismatch" />
+
+				<f:facet name="footer">
+					<p:selectBooleanCheckbox value="#{mBUser.accept}"
+						itemLabel="Accept Terms and Conditions">
+						<p:ajax event="change" update="btn_signup" />
+					</p:selectBooleanCheckbox>
+					<p:commandButton id="btn_signup" value="Sign Up"
+						action="#{mBUser.signUp()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

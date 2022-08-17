@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<h:form id="menuForm">
+
+		<p:menubar>
+
+			<p:menuitem value="#{msg.menu_home}" outcome="/home.xhtml" />
+
+			<p:submenu label="#{msg.menu_basic}">
+				<p:menuitem value="#{msg.menu_welcome}" outcome="/secured/welcome.xhtml" />
+				<p:menuitem value="#{msg.menu_pfcalculator}"
+					outcome="/secured/pf-calculator.xhtml" />
+				<p:menuitem value="#{msg.menu_components}"
+					outcome="/secured/pf-components.xhtml" />
+				<p:menuitem value="#{msg.menu_panels}"
+					outcome="/secured/pf-componentspanels.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="#{msg.menu_database}">
+				<p:menuitem value="#{msg.menu_department}" outcome="/secured/dept.xhtml" />
+				<p:menuitem value="#{msg.menu_employee}" outcome="/secured/emp.xhtml" />
+				<p:menuitem value="#{msg.menu_addingdepartment}" outcome="/secured/add=dept.xhtml" />
+				<p:menuitem value="#{msg.menu_addingemployee}" outcome="/secured/add-emp.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="#{msg.menu_jsfwebsite}">
+				<p:menuitem value="Primefaces" url="https://www.primefaces.org/"
+					target="blank" />
+				<p:menuitem value="Primefaces User Guide"
+					url="https://www.primefaces.org/documentation/" target="blank" />
+				<p:menuitem value="Omnifaces" url="https://www.omnifaces.org/"
+					target="blank" />
+				<p:menuitem value="Geeks for Geeks"
+					url="https://www.geeksforgeeks.org/" target="blank" />
+				<p:menuitem value="Java Point" url="https://www.javapoints.com/"
+					target="blank" />
+			</p:submenu>
+			<p:menuitem value="#{msg.menu_logout}" action="#{mbSec.logout()}" ajax="false" />
+		</p:menubar>
+
+	</h:form>
+
+	<br />
+
+</ui:composition>
+</html>

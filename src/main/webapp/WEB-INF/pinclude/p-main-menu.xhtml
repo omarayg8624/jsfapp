@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<h:form id="menuForm">
+
+		<p:menubar>
+
+			<p:menuitem value="#{msg.menu_home}" outcome="/p-home.xhtml" />
+
+			<p:submenu label="#{msg.menu_adding}">
+				<p:menuitem value="#{msg.menu_adduniversity}"
+					outcome="/psecured/add-university.xhtml" />
+				<p:menuitem value="#{msg.menu_addschool}"
+					outcome="/psecured/add-school.xhtml" />
+				<p:menuitem value="#{msg.menu_addprogram}"
+					outcome="/psecured/add-program.xhtml" />
+				<p:menuitem value="#{msg.menu_addstudent}"
+					outcome="/psecured/add-student.xhtml" />
+				<p:menuitem value="#{msg.menu_addtrainingcourse}"
+					outcome="/psecured/add-trainingcourse.xhtml" />
+				<p:menuitem value="#{msg.menu_addstudentresult}"
+					outcome="/psecured/add-studentresult.xhtml" />
+				<p:menuitem value="#{msg.menu_studenttrainingcourse}"
+					outcome="/psecured/add-studenttrainingcourse.xhtml" />
+			</p:submenu>
+
+			<p:submenu label="#{msg.menu_database}">
+				<p:menuitem value="#{msg.menu_university}"
+					outcome="/psecured/university.xhtml" />
+				<p:menuitem value="#{msg.menu_school}"
+					outcome="/psecured/school.xhtml" />
+				<p:menuitem value="#{msg.menu_program}"
+					outcome="/psecured/program.xhtml" />
+				<p:menuitem value="#{msg.menu_student}"
+					outcome="/psecured/student.xhtml" />
+				<p:menuitem value="#{msg.menu_studentresult}"
+					outcome="/psecured/studentresult.xhtml" />
+				<p:menuitem value="#{msg.menu_trainingcourse}"
+					outcome="/psecured/trainingcourse.xhtml" />
+				<p:menuitem value="#{msg.menu_studenttrainingcourse}"
+					outcome="/psecured/studenttrainingcourse.xhtml" />
+			</p:submenu>
+
+
+
+			<p:menuitem value="#{msg.menu_logout}" action="#{mbPSec.logout()}"
+				ajax="false" />
+		</p:menubar>
+
+	</h:form>
+
+	<br />
+
+</ui:composition>
+</html>

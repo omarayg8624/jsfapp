@@ -1,0 +1,103 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<ui:define name="title">Components</ui:define>
+	<ui:define name="content">
+	<h:form>
+		<p:panelGrid columns="2">
+			<f:facet name="header">
+				<h:outputText value="#{msg.lbl_primefacescomponent}" />
+			</f:facet>
+
+			<p:outputLabel value="#{msg.lbl_effect}" />
+			<h:panelGroup>
+				<h:outputText id="o" value="Omar" />
+				<p:effect type="pulsate" event="load" for="o" />
+			</h:panelGroup>
+
+			<p:outputLabel value="#{msg.lbl_inputtextrea}" />
+			<h:panelGroup>
+				<p:inputTextarea value="#{mbComp.t1}" cols="20" rows="3"
+					autoResize="true" counter="display" maxlength="20"
+					counterTemplate="{0} characters remaining" />
+				<h:outputText id="display" />
+			</h:panelGroup>
+
+			<p:outputLabel value="#{msg.lbl_keyboard}" />
+			<p:keyboard value="#{mbComp.t2}" />
+
+			<p:outputLabel value="#{msg.lbl_calender}" />
+			<p:calendar value="#{mbComp.t3}" />
+
+			<p:outputLabel value="#{msg.lbl_knob}" />
+			<p:knob value="#{mbComp.t4}" />
+
+			<p:outputLabel value="#{msg.lbl_cpassword}" />
+			<p:password value="#{mbComp.t5}" feedback="true" />
+
+			<p:outputLabel value="#{msg.lbl_selectbooleancheckbox}" />
+			<p:selectBooleanCheckbox value="#{mbComp.t6}" />
+
+			<p:outputLabel value="#{msg.lbl_selectonemenu}" />
+			<p:selectOneMenu value="#{mbComp.t7}">
+				<f:selectItem itemLabel="Jordan" itemValue="1" />
+				<f:selectItem itemLabel="Palestine" itemValue="2" />
+				<f:selectItem itemLabel="Syria" itemValue="3" />
+				<f:selectItem itemLabel="Iraq" itemValue="4" />
+			</p:selectOneMenu>
+
+			<p:outputLabel value="#{msg.lbl_selectoneradio}" />
+			<p:selectOneRadio value="#{mbComp.t8}">
+				<f:selectItem itemLabel="Jordan" itemValue="1" />
+				<f:selectItem itemLabel="Palestine" itemValue="2" />
+				<f:selectItem itemLabel="Syria" itemValue="3" />
+				<f:selectItem itemLabel="Iraq" itemValue="4" />
+			</p:selectOneRadio>
+
+			<p:outputLabel value="#{msg.lbl_spinner}" />
+			<p:spinner value="#{mbComp.t9}" min="0" max="100" />
+
+			<p:outputLabel value="#{msg.lbl_slider}" />
+			<h:panelGroup>
+				<h:inputText id="t10" value="#{mbComp.t10}" />
+				<p:slider for="t10" />
+			</h:panelGroup>
+
+			<p:inplace label="#{msg.lbl_cities}" effect="slide" effectSpeed="slow">
+				<h:selectOneMenu>
+					<f:selectItem itemLabel="Amman" itemValue="Amman" />
+					<f:selectItem itemLabel="Zarqa" itemValue="Zarqa" />
+					<f:selectItem itemLabel="Irbid" itemValue="Irbid" />
+				</h:selectOneMenu>
+			</p:inplace>
+
+			
+
+
+		</p:panelGrid>
+		<p:separator />
+		<p:commandButton value="#{msg.btn_submit}" action="#{mbComp.submit()}" />
+
+		<p:panelGrid columns="6">
+			<h:outputText value="#{mbComp.t1}" />
+			<h:outputText value="#{mbComp.t2}" />
+			<h:outputText value="#{mbComp.t3}" />
+			<h:outputText value="#{mbComp.t4}" />
+			<h:outputText value="#{mbComp.t5}" />
+			<h:outputText value="#{mbComp.t6}" />
+			<h:outputText value="#{mbComp.t7}" />
+			<h:outputText value="#{mbComp.t8}" />
+			<h:outputText value="#{mbComp.t9}" />
+			<h:outputText value="#{mbComp.t10}" />
+			<h:outputText value="#{mbComp.t12}" />
+			<h:outputText value="#{mbComp.model}" />
+		</p:panelGrid>
+
+	</h:form>
+</ui:define>
+</ui:composition>
+

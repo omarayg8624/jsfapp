@@ -1,0 +1,111 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<ui:define name="title">Components Panel</ui:define>
+	<ui:define name="content">
+		<h:form>
+
+			<p:tabView>
+				<p:tab title="#{msg.btn_tab1}">
+					<p:panelGrid columns="2">
+						<p:outputLabel value="#{msg.lbl_inputtextrea}" />
+						<h:panelGroup>
+							<p:inputTextarea value="#{mbComp.t1}" cols="20" rows="3"
+								autoResize="true" counter="display" maxlength="20"
+								counterTemplate="{0} characters remaining" />
+							<h:outputText id="display" />
+						</h:panelGroup>
+
+						<p:outputLabel value="#{msg.lbl_keyboard}" />
+						<p:keyboard value="#{mbComp.t2}" />
+
+						<p:outputLabel value="#{msg.lbl_calender}" />
+						<p:calendar value="#{mbComp.t3}" />
+					</p:panelGrid>
+				</p:tab>
+
+				<p:tab title="#{msg.btn_tab2}">
+					<p:accordionPanel>
+						<p:tab title="#{msg.btn_tab21}">
+							<p:panelGrid columns="2">
+								<p:outputLabel value="#{msg.lbl_knob}" />
+								<p:knob value="#{mbComp.t4}" />
+
+								<p:outputLabel value="#{msg.lbl_cpassword}" />
+								<p:password value="#{mbComp.t5}" feedback="true" />
+							</p:panelGrid>
+						</p:tab>
+						<p:tab title="#{msg.btn_tab22}">
+							<p:panelGrid columns="2">
+								<p:outputLabel value="#{msg.lbl_selectbooleancheckbox}" />
+								<p:selectBooleanCheckbox value="#{mbComp.t6}" />
+
+								<p:outputLabel value="#{msg.lbl_selectonemenu}" />
+								<p:selectOneMenu value="#{mbComp.t7}">
+									<f:selectItem itemLabel="Jordan" itemValue="1" />
+									<f:selectItem itemLabel="Palestine" itemValue="2" />
+									<f:selectItem itemLabel="Syria" itemValue="3" />
+									<f:selectItem itemLabel="Iraq" itemValue="4" />
+								</p:selectOneMenu>
+
+								<p:outputLabel value="#{msg.lbl_selectoneradio}" />
+								<p:selectOneRadio value="#{mbComp.t8}">
+									<f:selectItem itemLabel="Jordan" itemValue="1" />
+									<f:selectItem itemLabel="Palestine" itemValue="2" />
+									<f:selectItem itemLabel="Syria" itemValue="3" />
+									<f:selectItem itemLabel="Iraq" itemValue="4" />
+								</p:selectOneRadio>
+							</p:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+				</p:tab>
+
+				<p:tab title="#{msg.btn_tab3}">
+					<p:panel>
+						<h:panelGrid columns="2">
+							<p:outputLabel value="#{msg.lbl_spinner}" />
+							<p:spinner value="#{mbComp.t9}" min="0" max="100" />
+
+							<p:outputLabel value="#{msg.lbl_slider}" />
+							<h:panelGroup>
+								<h:inputText id="t10" value="#{mbComp.t10}" />
+								<p:slider for="t10" />
+							</h:panelGroup>
+
+							<p:outputLabel value="#{msg.lbl_clock}" />
+							<p:clock pattern="HH:mm:ss dd.MM.yyyy" />
+
+							<p:outputLabel value="#{msg.lbl_colorpicker}" />
+							<p:colorPicker value="#{mbComp.t11}" mode="inline" />
+
+						</h:panelGrid>
+					</p:panel>
+				</p:tab>
+			</p:tabView>
+
+			<f:facet name="footer">
+				<p:commandButton value="Submit" action="#{mbComp.submit()}"
+					ajax="false" />
+			</f:facet>
+
+			<p:panelGrid columns="6">
+				<h:outputText value="#{mbComp.t1}" />
+				<h:outputText value="#{mbComp.t2}" />
+				<h:outputText value="#{mbComp.t3}" />
+				<h:outputText value="#{mbComp.t4}" />
+				<h:outputText value="#{mbComp.t5}" />
+				<h:outputText value="#{mbComp.t6}" />
+				<h:outputText value="#{mbComp.t7}" />
+				<h:outputText value="#{mbComp.t8}" />
+				<h:outputText value="#{mbComp.t9}" />
+				<h:outputText value="#{mbComp.t10}" />
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+

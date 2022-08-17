@@ -1,0 +1,18 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">Welcome</ui:define>
+	<ui:define name="content">
+		<h:form>
+			<h:outputLabel value="#{msg.lbl_name}" />
+			<h:inputText value="#{mbWelcome.name}" />
+			<h:commandButton action="#{mbWelcome.sayHello()}" value="#{msg.btn_sayhello}" />
+			<h:outputText value="#{msg.lbl_welcome} #{mbWelcome.name}" />
+		</h:form>
+	</ui:define>
+</ui:composition>
+

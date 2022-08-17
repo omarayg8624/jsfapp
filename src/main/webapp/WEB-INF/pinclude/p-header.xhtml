@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition>
+
+	<f:facet name="header">
+		<h:graphicImage
+			value="#{mbPSec.lang.equals('en')?'/resources/Images/htu-header.png':'/resources/Images/htu-header.png'}" />
+	</f:facet>
+
+	<p:growl showDetail="true">
+		<p:autoUpdate />
+	</p:growl>
+
+</ui:composition>
+</html>

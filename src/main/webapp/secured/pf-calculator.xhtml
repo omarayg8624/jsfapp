@@ -1,0 +1,43 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<ui:define name="title">Calculator</ui:define>
+	<ui:define name="content">
+		<h:form id="form">
+			<p:growl>
+				<p:autoUpdate />
+			</p:growl>
+			<p:panelGrid columns="2">
+				<f:facet name="header">#{msg.lbl_pfcalculator}</f:facet>
+
+				<p:outputLabel value="#{msg.lbl_number1}" for="n1" />
+				<p:inputText id="n1" value="#{mbCalc.number1}" required="true"
+					requiredMessage="Please Enter Number1" />
+
+				<p:outputLabel value="#{msg.lbl_number2}" for="n2" />
+				<p:inputText id="n2" value="#{mbCalc.number2}" required="true"
+					requiredMessage="Please Enter Number2" />
+
+				<p:outputLabel value="#{msg.lbl_result}" />
+				<h:outputText id="rslt" value="#{mbCalc.result}" />
+
+				<f:facet name="footer">
+
+					<p:commandButton action="#{mbCalc.add}" value="+"
+						update=":form:rslt" />
+					<p:commandButton action="#{mbCalc.substract()}" value="-"
+						update=":form:rslt" />
+					<p:commandButton action="#{mbCalc.multiply()}" value="*"
+						ajax="false" />
+					<p:commandButton action="#{mbCalc.devide()}" value="/" ajax="false" />
+
+				</f:facet>
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

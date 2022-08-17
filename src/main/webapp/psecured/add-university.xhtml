@@ -1,0 +1,53 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_adduniversity}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_adduniversity}" />
+				</f:facet>
+
+				<p:outputLabel value="#{msg.lbl_uid}" for="id" />
+				<p:inputNumber id="id"
+					value="#{mbAddUniversity.university.universtyId}" decimalPlaces="0"
+					decimalSeparator=" " thousandSeparator=" " required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_uid}" />
+
+				<p:outputLabel value="#{msg.lbl_uaname}" for="aname" />
+				<p:inputText id="aname" value="#{mbAddUniversity.university.aName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_uaname}" />
+
+				<p:outputLabel value="#{msg.lbl_uename}" for="ename" />
+				<p:inputText id="ename" value="#{mbAddUniversity.university.eName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_uename}" />
+
+				<p:outputLabel value="#{msg.lbl_uwebsite}" for="website" />
+				<p:inputText id="website"
+					value="#{mbAddUniversity.university.website}" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_uwebsite}" />
+					
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}"
+						action="#{mbAddUniversity.save()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

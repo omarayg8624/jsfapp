@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+	<h:form>
+		<h:panelGrid columns="2">
+			<f:facet name="header">#{msg.lbl_calculator}</f:facet>
+
+			<h:outputLabel value="#{msg.lbl_number1}" for="n1" />
+			<h:inputText id="n1" value="#{mbCalc.number1}" />
+
+			<h:outputLabel value="#{msg.lbl_number2}" for="n2" />
+			<h:inputText id="n2" value="#{mbCalc.number2}" />
+
+			<h:outputLabel value="#{msg.lbl_result}" />
+			<h:outputText id="rslt" value="#{mbCalc.result}" />
+
+			<f:facet name="footer">
+			
+			<h:commandButton action="#{mbCalc.add}" value="+" />
+			<h:commandButton action="#{mbCalc.substract()}" value="-" />
+			<h:commandButton action="#{mbCalc.multiply()}" value="*" />
+			<h:commandButton action="#{mbCalc.devide()}" value="/" />
+			
+			</f:facet>
+		</h:panelGrid>
+
+
+	</h:form>
+</h:body>
+</html>

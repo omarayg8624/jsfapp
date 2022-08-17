@@ -1,0 +1,102 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+	
+		<ui:define name="title">#{msg.lbl_trainingcourse}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:panel>
+
+				<p:dataTable value="#{mbTrainingCourse.trainingCourseTable}" var="t">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_trainingcourse}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_cid}" sortBy="#{t.courseId}">
+						<h:outputText value="#{t.courseId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_taname}" sortBy="#{t.aName}">
+						<h:outputText value="#{t.aName}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_tename}" sortBy="#{t.eName}">
+						<h:outputText value="#{t.eName}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_maxStudent}" sortBy="#{t.maxStudent}">
+						<h:outputText value="#{t.maxStudent}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_shortdesc}" sortBy="#{t.shortdesc}">
+						<h:outputText value="#{t.shortdesc}" />
+					</p:column>
+					
+					<p:column headerText="#{msg.lbl_detailedDesc}" sortBy="#{t.detailedDesc}">
+						<h:outputText value="#{t.detailedDesc}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." onclick="PF('traDlg').show()"
+							update=":form:editPnl">
+							<f:setPropertyActionListener value="#{t}"
+								target="#{mbTrainingCourse.selectedTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbTrainingCourse.removeTrainingCourse()}"
+							process="@this" ajax="false">
+							<f:setPropertyActionListener value="#{t}"
+								target="#{mbTrainingCourse.selectedTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:outputText
+							value="In total there are #{mbTrainingCourse.trainingCourseTable.size()} Courses" />
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Training Course" widgetVar="traDlg" modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_cid}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.courseId}" />
+
+					<p:outputLabel value="#{msg.lbl_taname}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.aName}" />
+					
+					<p:outputLabel value="#{msg.lbl_tename}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.eName}" />
+					
+					<p:outputLabel value="#{msg.lbl_maxStudent}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.maxStudent}" />
+					
+					<p:outputLabel value="#{msg.lbl_shortdesc}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.shortdesc}" />
+					
+					<p:outputLabel value="#{msg.lbl_detailedDesc}" />
+					<p:inputText value="#{mbTrainingCourse.selectedTrainingCourse.detailedDesc}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save" action="#{mbTrainingCourse.updateTrainingCourse()}"
+							ajax="false" />
+						<p:commandButton value="Back" type="button"
+							onclick="PF('traDlg').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

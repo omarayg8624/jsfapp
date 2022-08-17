@@ -1,0 +1,76 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_addstudentresult}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_addstudentresult}" />
+				</f:facet>
+
+				<p:outputLabel value="#{msg.lbl_stId}" for="stid" />
+				<p:selectOneMenu id="stid" value="#{mbAddStudentResult.studentResult.studentId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stId}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbStudent.stTable}" var="sttc"
+						itemLabel="#{sttc}" itemValue="#{sttc}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_cid}" for="cid" />
+				<p:selectOneMenu id="cid" value="#{mbAddStudentResult.studentResult.courseId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_cid}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbTrainingCourse.trTable}" var="ctr"
+						itemLabel="#{ctr}" itemValue="#{ctr}" />
+				</p:selectOneMenu>
+					
+				<p:outputLabel value="#{msg.lbl_englishMark}" for="emark" />
+				<p:inputText id="emark"
+					value="#{mbAddStudentResult.studentResult.englishMark}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_englishMark}" />
+
+				<p:outputLabel value="#{msg.lbl_interviewMark}" for="imark" />
+				<p:inputText id="imark"
+					value="#{mbAddStudentResult.studentResult.interviewMark}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_interviewMark}" />
+
+				<p:outputLabel value="#{msg.lbl_acceptedFlag}" for="accflag" />
+				<p:inputText id="accflag"
+					value="#{mbAddStudentResult.studentResult.acceptedFlag}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_acceptedFlag}" />
+
+				<p:outputLabel value="#{msg.lbl_notes}" />
+				<h:panelGroup>
+					<p:inputTextarea value="#{mbAddStudentResult.studentResult.notes}"
+						cols="20" rows="3" autoResize="true" counter="display"
+						maxlength="20" counterTemplate="{0} characters remaining" />
+					<h:outputText id="display" />
+				</h:panelGroup>
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}"
+						action="#{mbAddStudentResult.save()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

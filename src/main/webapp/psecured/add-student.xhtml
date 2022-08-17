@@ -1,0 +1,122 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_addstudent}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+
+			<p:growl showDetail="true">
+				<p:autoUpdate />
+			</p:growl>
+
+			<p:panelGrid columns="2">
+
+				<f:facet name="header">
+					<h:outputText value="#{msg.lbl_addstudent}" />
+				</f:facet>
+
+				<p:outputLabel value="#{msg.lbl_stId}" for="id" />
+				<p:inputNumber id="id" value="#{mbAddStudent.student.studentId}"
+					decimalPlaces="0" decimalSeparator=" " thousandSeparator=" "
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stId}" />
+
+				<p:outputLabel value="#{msg.lbl_staName}" for="aname" />
+				<p:inputText id="aname" value="#{mbAddStudent.student.aName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_staName}" />
+
+				<p:outputLabel value="#{msg.lbl_steName}" for="ename" />
+				<p:inputText id="ename" value="#{mbAddStudent.student.eName}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_steName}" />
+
+				<p:outputLabel value="#{msg.lbl_stmobile}" for="mobile" />
+				<p:inputText id="mobile" value="#{mbAddStudent.student.mobile}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stmobile}" />
+
+				<p:outputLabel value="#{msg.lbl_stbirthDate}" for="birthdate" />
+				<p:calendar id="birthdate" value="#{mbAddStudent.student.birthDate}"
+					pattern="dd/MM/yyyy" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stbirthDate}" />
+
+				<p:outputLabel value="#{msg.lbl_stsex}" for="sex" />
+				<p:inputText id="sex" value="#{mbAddStudent.student.sex}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stsex}" />
+
+				<p:outputLabel value="#{msg.lbl_stemail}" for="email" />
+				<p:inputText id="email" value="#{mbAddStudent.student.email}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stemail}" />
+
+				<p:outputLabel value="#{msg.lbl_uid}" for="uid" />
+				<p:selectOneMenu id="uid" value="#{mbAddStudent.student.universityId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_uid}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbUniversity.unTable}" var="un"
+						itemLabel="#{un}" itemValue="#{un}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_sid}" for="sid" />
+				<p:selectOneMenu id="sid" value="#{mbAddStudent.student.schoolId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_sid}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbSchool.scTable}" var="sc"
+						itemLabel="#{sc}" itemValue="#{sc}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_pid}" for="pid" />
+				<p:selectOneMenu id="pid" value="#{mbAddStudent.student.programId}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_pid}">
+					<f:selectItem itemLabel="Select One" itemValue="" />
+					<f:selectItems value="#{mbProgram.prTable}" var="pr"
+						itemLabel="#{pr}" itemValue="#{pr}" />
+				</p:selectOneMenu>
+
+				<p:outputLabel value="#{msg.lbl_stfinalAverage}" for="finalaverage" />
+				<p:inputText id="finalaverage"
+					value="#{mbAddStudent.student.finalAverage}" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stfinalAverage}" />
+
+				<p:outputLabel value="#{msg.lbl_stmaxAverage}" for="maxaverage" />
+				<p:inputText id="maxaverage"
+					value="#{mbAddStudent.student.maxAverage}" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stmaxAverage}" />
+
+				<p:outputLabel value="#{msg.lbl_strate}" for="rate" />
+				<p:inputText id="rate" value="#{mbAddStudent.student.rate}"
+					required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_strate}" />
+
+				<p:outputLabel value="#{msg.lbl_stgraduateYear}"
+					for="graduationyear" />
+				<p:inputText id="graduationyear"
+					value="#{mbAddStudent.student.graduateYear}" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stgraduateYear}" />
+
+				<p:outputLabel value="#{msg.lbl_stgraduateSem}"
+					for="graduationsemester" />
+				<p:inputText id="graduationsemester"
+					value="#{mbAddStudent.student.graduateSem}" required="true"
+					requiredMessage="#{msg.msg_required} - #{msg.lbl_stgraduateSem}" />
+
+				<f:facet name="footer">
+					<p:commandButton value="#{msg.btn_save}"
+						action="#{mbAddStudent.save()}" ajax="false" />
+				</f:facet>
+
+			</p:panelGrid>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

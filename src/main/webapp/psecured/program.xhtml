@@ -1,0 +1,92 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_program}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:panel>
+
+				<p:dataTable value="#{mbProgram.programTable}" var="p">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_program}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_sid}" sortBy="#{p.schoolId}">
+						<h:outputText value="#{p.schoolId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_pid}" sortBy="#{p.programId}">
+						<h:outputText value="#{p.programId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_paname}" sortBy="#{p.aName}">
+						<h:outputText value="#{p.aName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_pename}" sortBy="#{p.eName}">
+						<h:outputText value="#{p.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." onclick="PF('proDlg').show()"
+							update=":form:editPnl">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{mbProgram.selectedProgram}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbProgram.removeProgram()}"
+							process="@this" ajax="false">
+							<f:setPropertyActionListener value="#{p}"
+								target="#{mbProgram.selectedProgram}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:outputText
+							value="In total there are #{mbProgram.programTable.size()} Programs" />
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Program" widgetVar="proDlg" modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_sid}" for="sid" />
+					<p:selectOneMenu id="sid" value="#{mbAddProgram.program.schoolId}">
+						<f:selectItem itemLabel="#{mbProgram.selectedProgram.schoolId}" itemValue="" />
+						<f:selectItems value="#{mbSchool.scTable}" var="sc"
+							itemLabel="#{sc}" itemValue="#{sc}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_pid}" />
+					<p:inputText value="#{mbProgram.selectedProgram.programId}" />
+
+					<p:outputLabel value="#{msg.lbl_paname}" />
+					<p:inputText value="#{mbProgram.selectedProgram.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_pename}" />
+					<p:inputText value="#{mbProgram.selectedProgram.eName}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save"
+							action="#{mbProgram.updateProgram()}" ajax="false" />
+						<p:commandButton value="Back" type="button"
+							onclick="PF('proDlg').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

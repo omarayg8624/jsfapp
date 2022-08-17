@@ -1,0 +1,123 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_studentresult}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:panel>
+
+				<p:dataTable value="#{mbStudentResult.studentResultTable}" var="str">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_studentresult}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_stId}" sortBy="#{str.studentId}">
+						<h:outputText value="#{str.studentId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_cid}" sortBy="#{str.courseId}">
+						<h:outputText value="#{str.courseId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_englishMark}"
+						sortBy="#{str.englishMark}">
+						<h:outputText value="#{str.englishMark}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_interviewMark}"
+						sortBy="#{str.interviewMark}">
+						<h:outputText value="#{str.interviewMark}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_acceptedFlag}"
+						sortBy="#{str.acceptedFlag}">
+						<h:outputText value="#{str.acceptedFlag}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_notes}" sortBy="#{str.notes}">
+						<h:outputText value="#{str.notes}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." onclick="PF('strDlg').show()"
+							update=":form:editPnl">
+							<f:setPropertyActionListener value="#{str}"
+								target="#{mbStudentResult.selectedStudentResult}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X"
+							action="#{mbStudentResult.removeStudentResult()}" process="@this"
+							ajax="false">
+							<f:setPropertyActionListener value="#{str}"
+								target="#{mbStudentResult.selectedStudentResult}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:outputText
+							value="In total there are #{mbStudentResult.studentResultTable.size()} Results" />
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Program" widgetVar="strDlg" modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_stId}" for="stid" />
+					<p:selectOneMenu id="stid"
+						value="#{mbAddStudentResult.studentResult.studentId}">
+						<f:selectItem
+							itemLabel="#{mbStudentResult.selectedStudentResult.studentId}"
+							itemValue="" />
+						<f:selectItems value="#{mbStudent.stTable}" var="sttc"
+							itemLabel="#{sttc}" itemValue="#{sttc}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_cid}" for="cid" />
+					<p:selectOneMenu id="cid"
+						value="#{mbAddStudentResult.studentResult.courseId}">
+						<f:selectItem
+							itemLabel="#{mbStudentResult.selectedStudentResult.courseId}"
+							itemValue="" />
+						<f:selectItems value="#{mbTrainingCourse.trTable}" var="ctr"
+							itemLabel="#{ctr}" itemValue="#{ctr}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_englishMark}" />
+					<p:inputText
+						value="#{mbStudentResult.selectedStudentResult.englishMark}" />
+
+					<p:outputLabel value="#{msg.lbl_interviewMark}" />
+					<p:inputText
+						value="#{mbStudentResult.selectedStudentResult.interviewMark}" />
+
+					<p:outputLabel value="#{msg.lbl_acceptedFlag}" />
+					<p:inputText
+						value="#{mbStudentResult.selectedStudentResult.acceptedFlag}" />
+
+					<p:outputLabel value="#{msg.lbl_notes}" />
+					<p:inputText value="#{mbStudentResult.selectedStudentResult.notes}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save"
+							action="#{mbStudentResult.updateStudentResult()}" ajax="false" />
+						<p:commandButton value="Back" type="button"
+							onclick="PF('strDlg').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

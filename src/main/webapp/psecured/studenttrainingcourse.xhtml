@@ -1,0 +1,99 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_studenttrainingcourse}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:panel>
+
+				<p:dataTable
+					value="#{mbStudentTrainingCourse.studentTrainingCourseTable}"
+					var="stc">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_studenttrainingcourse}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_stId}" sortBy="#{stc.studentId}">
+						<h:outputText value="#{stc.studentId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_cid}" sortBy="#{stc.courseId}">
+						<h:outputText value="#{stc.courseId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_priority}" sortBy="#{stc.priority}">
+						<h:outputText value="#{stc.priority}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." onclick="PF('stcDlg').show()"
+							update=":form:editPnl">
+							<f:setPropertyActionListener value="#{stc}"
+								target="#{mbStudentTrainingCourse.selectedStudentTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X"
+							action="#{mbStudentTrainingCourse.removeStudentTrainingCourse()}"
+							process="@this" ajax="false">
+							<f:setPropertyActionListener value="#{stc}"
+								target="#{mbStudentTrainingCourse.selectedStudentTrainingCourse}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Student Training Course" widgetVar="stcDlg"
+				modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_stId}" for="stid" />
+					<p:selectOneMenu id="stid"
+						value="#{mbAddStudentResult.studentResult.studentId}">
+						<f:selectItem
+							itemLabel="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.studentId}"
+							itemValue="" />
+						<f:selectItems value="#{mbStudent.stTable}" var="sttc"
+							itemLabel="#{sttc}" itemValue="#{sttc}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_cid}" for="cid" />
+					<p:selectOneMenu id="cid"
+						value="#{mbAddStudentResult.studentResult.courseId}">
+						<f:selectItem
+							itemLabel="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.courseId}"
+							itemValue="" />
+						<f:selectItems value="#{mbTrainingCourse.trTable}" var="ctr"
+							itemLabel="#{ctr}" itemValue="#{ctr}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_priority}" />
+					<p:inputText
+						value="#{mbStudentTrainingCourse.selectedStudentTrainingCourse.priority}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save"
+							action="#{mbStudentTrainingCourse.updateStudentTrainingCourse()}"
+							ajax="false" />
+						<p:commandButton value="Back" type="button"
+							onclick="PF('stcDlg').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,230 @@
+<ui:composition template="/WEB-INF/ptemplate/p-template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="title">#{msg.lbl_student}</ui:define>
+	<ui:define name="content">
+
+		<h:form id="form">
+			<p:panel>
+
+				<p:dataTable value="#{mbStudent.studentTable}" var="st">
+
+					<f:facet name="header">
+						<h:outputText value="#{msg.lbl_student}" />
+					</f:facet>
+
+					<p:column headerText="#{msg.lbl_details}">
+						<p:commandButton value="+" onclick="PF('stuDlg').show()"
+							update=":form:showPnl">
+							<f:setPropertyActionListener value="#{st}"
+								target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stId}" sortBy="#{st.studentId}">
+						<h:outputText value="#{st.studentId}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_staName}" sortBy="#{st.aName}">
+						<h:outputText value="#{st.aName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_steName}" sortBy="#{st.eName}">
+						<h:outputText value="#{st.eName}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stbirthDate}"
+						sortBy="#{st.birthDate}">
+						<h:outputText value="#{st.birthDate}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stsex}" sortBy="#{st.sex}">
+						<h:outputText value="#{st.sex}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stfinalAverage}"
+						sortBy="#{st.finalAverage}">
+						<h:outputText value="#{st.finalAverage}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stmaxAverage}"
+						sortBy="#{st.maxAverage}">
+						<h:outputText value="#{st.maxAverage}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_strate}" sortBy="#{st.rate}">
+						<h:outputText value="#{st.rate}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stgraduateYear}"
+						sortBy="#{st.graduateYear}">
+						<h:outputText value="#{st.graduateYear}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_stgraduateSem}"
+						sortBy="#{st.graduateSem}">
+						<h:outputText value="#{st.graduateSem}" />
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_edit}">
+						<p:commandButton value="..." onclick="PF('stDlg').show()"
+							update=":form:editPnl">
+							<f:setPropertyActionListener value="#{st}"
+								target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+					<p:column headerText="#{msg.lbl_remove}">
+						<p:commandButton value="X" action="#{mbStudent.removeStudent()}"
+							process="@this" ajax="false">
+							<f:setPropertyActionListener value="#{st}"
+								target="#{mbStudent.selectedStudent}" />
+						</p:commandButton>
+					</p:column>
+
+					<f:facet name="footer">
+						<h:outputText
+							value="In total there are #{mbStudent.studentTable.size()} Students" />
+					</f:facet>
+
+				</p:dataTable>
+
+			</p:panel>
+
+			<p:dialog header="Edit Program" widgetVar="stDlg" modal="true">
+				<p:panelGrid id="editPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_stId}" />
+					<p:inputText value="#{mbStudent.selectedStudent.studentId}" />
+
+					<p:outputLabel value="#{msg.lbl_staName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_steName}" />
+					<p:inputText value="#{mbStudent.selectedStudent.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_stmobile}" />
+					<p:inputText value="#{mbStudent.selectedStudent.mobile}" />
+
+					<p:outputLabel value="#{msg.lbl_stbirthDate}" />
+					<p:inputText value="#{mbStudent.selectedStudent.birthDate}" />
+
+					<p:outputLabel value="#{msg.lbl_stsex}" />
+					<p:inputText value="#{mbStudent.selectedStudent.sex}" />
+
+					<p:outputLabel value="#{msg.lbl_stemail}" />
+					<p:inputText value="#{mbStudent.selectedStudent.email}" />
+
+					<p:outputLabel value="#{msg.lbl_uid}" for="uid" />
+					<p:selectOneMenu id="uid"
+						value="#{mbAddStudent.student.universityId}">
+						<f:selectItem
+							itemLabel="#{mbStudent.selectedStudent.universityId}"
+							itemValue="" />
+						<f:selectItems value="#{mbUniversity.unTable}" var="un"
+							itemLabel="#{un}" itemValue="#{un}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_sid}" for="sid" />
+					<p:selectOneMenu id="sid" value="#{mbAddStudent.student.schoolId}">
+						<f:selectItem itemLabel="#{mbStudent.selectedStudent.schoolId}"
+							itemValue="" />
+						<f:selectItems value="#{mbSchool.scTable}" var="sc"
+							itemLabel="#{sc}" itemValue="#{sc}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_pid}" for="pid" />
+					<p:selectOneMenu id="pid" value="#{mbAddStudent.student.programId}">
+						<f:selectItem itemLabel="#{mbStudent.selectedStudent.programId}"
+							itemValue="" />
+						<f:selectItems value="#{mbProgram.prTable}" var="pr"
+							itemLabel="#{pr}" itemValue="#{pr}" />
+					</p:selectOneMenu>
+
+					<p:outputLabel value="#{msg.lbl_stfinalAverage}" />
+					<p:inputText value="#{mbStudent.selectedStudent.finalAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_stmaxAverage}" />
+					<p:inputText value="#{mbStudent.selectedStudent.maxAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_strate}" />
+					<p:inputText value="#{mbStudent.selectedStudent.rate}" />
+
+					<p:outputLabel value="#{msg.lbl_stgraduateYear}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateYear}" />
+
+					<p:outputLabel value="#{msg.lbl_stgraduateSem}" />
+					<p:inputText value="#{mbStudent.selectedStudent.graduateSem}" />
+
+					<f:facet name="footer">
+						<p:commandButton value="Save"
+							action="#{mbStudent.updateStudent()}" ajax="false" />
+						<p:commandButton value="Back" type="button"
+							onclick="PF('stDlg').hide()" />
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+			<p:dialog header="Show Program" widgetVar="stuDlg" modal="true">
+				<p:panelGrid id="showPnl" columns="2">
+
+					<p:outputLabel value="#{msg.lbl_stId}" />
+					<h:outputText value="#{mbStudent.selectedStudent.studentId}" />
+
+					<p:outputLabel value="#{msg.lbl_staName}" />
+					<h:outputText value="#{mbStudent.selectedStudent.aName}" />
+
+					<p:outputLabel value="#{msg.lbl_steName}" />
+					<h:outputText value="#{mbStudent.selectedStudent.eName}" />
+
+					<p:outputLabel value="#{msg.lbl_stmobile}" />
+					<h:outputText value="#{mbStudent.selectedStudent.mobile}" />
+
+					<p:outputLabel value="#{msg.lbl_stbirthDate}" />
+					<h:outputText value="#{mbStudent.selectedStudent.birthDate}" />
+
+					<p:outputLabel value="#{msg.lbl_stsex}" />
+					<h:outputText value="#{mbStudent.selectedStudent.sex}" />
+
+					<p:outputLabel value="#{msg.lbl_stemail}" />
+					<h:outputText value="#{mbStudent.selectedStudent.email}" />
+
+					<p:outputLabel value="#{msg.lbl_uid}" />
+					<h:outputText value="#{mbStudent.selectedStudent.universityId}" />
+
+					<p:outputLabel value="#{msg.lbl_sid}" />
+					<h:outputText value="#{mbStudent.selectedStudent.schoolId}" />
+
+					<p:outputLabel value="#{msg.lbl_pid}" />
+					<h:outputText value="#{mbStudent.selectedStudent.programId}" />
+
+					<p:outputLabel value="#{msg.lbl_stfinalAverage}" />
+					<h:outputText value="#{mbStudent.selectedStudent.finalAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_stmaxAverage}" />
+					<h:outputText value="#{mbStudent.selectedStudent.maxAverage}" />
+
+					<p:outputLabel value="#{msg.lbl_strate}" />
+					<h:outputText value="#{mbStudent.selectedStudent.rate}" />
+
+					<p:outputLabel value="#{msg.lbl_stgraduateYear}" />
+					<h:outputText value="#{mbStudent.selectedStudent.graduateYear}" />
+
+					<p:outputLabel value="#{msg.lbl_stgraduateSem}" />
+					<h:outputText value="#{mbStudent.selectedStudent.graduateSem}" />
+
+					<f:facet name="footer">
+
+					</f:facet>
+
+				</p:panelGrid>
+			</p:dialog>
+
+		</h:form>
+	</ui:define>
+</ui:composition>

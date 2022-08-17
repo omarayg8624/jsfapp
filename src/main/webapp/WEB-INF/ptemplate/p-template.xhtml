@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="#{mbPSec.lang}" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<f:view locale="#{mbPSec.locale}">
+	<h:head>
+		<title><ui:insert name="title">Upskilling</ui:insert></title>
+		<link rel="icon" type="image/png"
+			href="#{resource ['icons/icon1.png']}" />
+	</h:head>
+
+	<h:body dir="#{mbPSec.dir}">
+
+		<h:outputStylesheet name="java.css" library="css" />
+
+		<p:panel id="Pnl">
+
+			<ui:include src="/WEB-INF/pinclude/p-header.xhtml" />
+
+			<p:panel id="contentPnl" rendered="#{mbPSec.logon}"
+				style="min-height: 400px;">
+
+				<ui:include src="/WEB-INF/pinclude/p-main-menu.xhtml" />
+
+				<ui:insert name="content">
+					<h1>Insert Your code Here</h1>
+					<h2>Insert Your code Here</h2>
+					<h3>Insert Your code Here</h3>
+					<h4>Insert Your code Here</h4>
+					<h5>Insert Your code Here</h5>
+					<h6>Insert Your code Here</h6>
+				</ui:insert>
+
+			</p:panel>
+			<p:panel id="loginPnl" rendered="#{!mbPSec.logon}"
+				style="min-height: 400px;">
+
+				<ui:include src="/WEB-INF/pinclude/p-login.xhtml" />
+
+			</p:panel>
+
+			<f:facet name="footer">
+				<p:outputLabel
+					value="Copyright © Al-Hussein Technical University 2022"
+					styleClass="footer" />
+			</f:facet>
+
+		</p:panel>
+
+	</h:body>
+</f:view>
+</html>
